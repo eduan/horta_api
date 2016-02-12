@@ -1,4 +1,4 @@
-# ${1:Project Horta}
+# Project Horta
 The main goal of the project is build an api to provide information and instructions to how to plant and maintain a little garden at home.
 ## Installation
 TODO: 
