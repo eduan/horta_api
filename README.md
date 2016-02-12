@@ -11,6 +11,9 @@ sudo pip install Django
 sudo pip install MySQL-python
 sudo pip install django-input-mask
 sudo aptitude install libapache2-mod-wsgi python-dev libmysqlclient-dev apache2 apache2.2-common apache2-mpm-prefork apache2-utils libexpat1 ssl-cert
+sudo pip install djangorestframework
+sudo pip install markdown       # Markdown support for the browsable API.
+sudo pip install django-filter  # Filtering support
 ```
 
 ## Usage
