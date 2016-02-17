@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Plant, Condition, ConditionType, ConditionInterval
 
-# Register your models here.
+admin.site.register(Plant)
+admin.site.register(Condition)
+admin.site.register(ConditionType)
+admin.site.register(ConditionInterval)
