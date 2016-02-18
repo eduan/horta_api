@@ -31,8 +31,14 @@ class Plant(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     condition = models.ManyToManyField(Condition, related_name='%(class)s_condition')
-    temperature = models.ForeignKey(ConditionInterval, related_name='%(class)s_temp', default='');
-    days = models.ForeignKey(ConditionInterval, related_name='%(class)s_days', default='');
-    ph = models.ForeignKey(ConditionInterval, related_name='%(class)s_ph', default='');
+    temperature = models.ForeignKey(ConditionInterval, related_name='%(class)s_temp', default='', limit_choices_to={'condition_type_id': 3});
+    days = models.ForeignKey(ConditionInterval, related_name='%(class)s_days', default='', limit_choices_to={'condition_type_id': 4});
+    ph = models.ForeignKey(ConditionInterval, related_name='%(class)s_ph', default='', limit_choices_to={'condition_type_id': 2});
+    depth = models.IntegerField(default=0)
     created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
     updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
+    def  __str__(self):
+        return self.name
+
+class Growing(models.Model):
+    plant = models.ForeignKey(Plant)
