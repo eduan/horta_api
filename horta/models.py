@@ -5,31 +5,28 @@ from django.utils import timezone
 #Weather, Difficulty, Light
 from django.utils.encoding import python_2_unicode_compatible
 
-@python_2_unicode_compatible
 class ConditionType(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
-@python_2_unicode_compatible
 class Condition(models.Model):
     description = models.CharField(max_length=30)
     condition_type = models.ForeignKey(ConditionType)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.condition_type.name + ': ' + self.description
 
 
-@python_2_unicode_compatible
 class ConditionInterval(models.Model):
     min = models.IntegerField(default=0)
     max = models.IntegerField(default=0)
     condition_type = models.ForeignKey(ConditionType)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.condition_type.name + ' min: ' + str(self.min) + ' max: ' + str(self.max)
 
 
@@ -44,7 +41,7 @@ class Plant(models.Model):
     created_at = models.DateTimeField('Criado em', default=timezone.now)
     updated_at = models.DateTimeField('Atualizado em', default=timezone.now)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
