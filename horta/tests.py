@@ -7,7 +7,7 @@ from horta.queries import *
 
 class GrowingTestCase(TestCase):
     @classmethod
-    def setUpTestData(self):
+    def setUpTestData(cls):
         ph = ConditionType.objects.create(name='Ph')
         temperatura = ConditionType.objects.create(name='Temperatura')
         dias = ConditionType.objects.create(name='Dias')
