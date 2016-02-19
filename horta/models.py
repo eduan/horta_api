@@ -47,7 +47,7 @@ class User(models.Model):
     created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
     updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
 
-class GrowingStages(models.Model):
+class GrowingStage(models.Model):
     description = models.CharField(max_length=100)
     days = models.IntegerField(default=0)
     step = models.IntegerField(default=0)
@@ -57,7 +57,7 @@ class GrowingStages(models.Model):
 
 class Growing(models.Model):
     user = models.ForeignKey(User, default='')
-    stage = models.ForeignKey(GrowingStages, default='')
+    stage = models.ForeignKey(GrowingStage, default='')
     created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
     updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
 

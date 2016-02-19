@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^horta/', include('horta.urls')),
+    url(r'^', include('horta.urls')),
 ]
