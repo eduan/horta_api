@@ -1,9 +1,10 @@
-from models import Growing
-from queries import getFirstGrowingStageByPlant, getCurrentGrownStageByUserAndPlant
+from queries import *
+
 
 def startGrowing(user, plant):
     growingStage = getFirstGrowingStageByPlant(plant)
     return Growing.objects.create(user=user,stage=growingStage)
 
-def getCurrentGrownStage(user, plant):
-    return getCurrentGrownStageByUserAndPlant(user, plant)
+
+def getGrowning(user, plant):
+    return getGrowingByUserAndPlant(user, plant)

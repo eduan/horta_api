@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from django.test import TestCase
-
 from horta.models import User, Plant, Growing, ConditionType, Condition, ConditionInterval, GrowingStage
-from horta.services import startGrowing
+from horta.services import *
 from horta.queries import *
 
+
 class GrowingTestCase(TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpTestData(self):
         ph = ConditionType.objects.create(name='Ph')
         temperatura = ConditionType.objects.create(name='Temperatura')
         dias = ConditionType.objects.create(name='Dias')
@@ -33,9 +34,9 @@ class GrowingTestCase(TestCase):
         plant = Plant.objects.create(
             name='Planta teste',
             description='Planta teste nome em latim alguma coisa sei la',
-            temperature=ConditionInterval.objects.get(pk=1),
-            days=ConditionInterval.objects.get(pk=2),
-            ph=ConditionInterval.objects.get(pk=3),
+            temperature=ConditionInterval.objects.get(pk=4),
+            days=ConditionInterval.objects.get(pk=3),
+            ph=ConditionInterval.objects.get(pk=2),
             depth=1)
         GrowingStage.objects.create(
             description='Plantio',
@@ -50,9 +51,20 @@ class GrowingTestCase(TestCase):
             plant = plant
         )
         # condition=Condition.objects.get(pk=1),
+
     def testCreatingGrowning(self):
         plant = Plant.objects.get(pk=1)
         user = getUserByEmail('email@teste.com')
-        growing = startGrowing(user,plant)
-        self.assertTrue(growing.stage.step == 1)
+        growing = startGrowing(user, plant)
+        self.assertEqual(growing.stage.step, 1)
+        self.assertEqual(growing.stage.days, 1)
+        self.assertEqual(growing.stage.description, 'Plantio')
 
+    def testGrowingStageEvolution(self):
+        plant = Plant.objects.get(pk=1)
+        user = getUserByEmail('email@teste.com')
+        growing = startGrowing(user, plant)
+        growing.nextStep()
+        self.assertEqual(growing.stage.step, 2)
+        self.assertEqual(growing.stage.days, 5)
+        self.assertEqual(growing.stage.description, 'Germinação'.decode('utf8'))
