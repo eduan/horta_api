@@ -1,2 +1,3 @@
 horta_ws/settings.py
+*.pyc
 .idea/
