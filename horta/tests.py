@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from horta.models import User, Plant, Growing, ConditionType, Condition, ConditionInterval, GrowingStage
 from horta.services import startGrowing
+from horta.queries import *
 
 class GrowingTestCase(TestCase):
     def setUp(self):
@@ -51,8 +52,7 @@ class GrowingTestCase(TestCase):
         # condition=Condition.objects.get(pk=1),
     def testCreatingGrowning(self):
         plant = Plant.objects.get(pk=1)
-        user = User.objects.get(email='email@teste.com')
-        startGrowing(user,plant)
-        g = Growing.objects.get(user__email='email@teste.com')
-        self.assertTrue(g.pk > 0)
+        user = getUserByEmail('email@teste.com')
+        growing = startGrowing(user,plant)
+        self.assertTrue(growing.stage.step == 1)
 
