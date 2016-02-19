@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-import datetime
+from django.utils import timezone
 
 #Weather, Difficulty, Light
 from django.utils.encoding import python_2_unicode_compatible
@@ -35,8 +35,8 @@ class Plant(models.Model):
     days = models.ForeignKey(ConditionInterval, related_name='%(class)s_days', default='', limit_choices_to={'condition_type_id': 4});
     ph = models.ForeignKey(ConditionInterval, related_name='%(class)s_ph', default='', limit_choices_to={'condition_type_id': 2});
     depth = models.IntegerField(default=0)
-    created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
-    updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
+    created_at = models.DateTimeField('Criado em', default = timezone.now)
+    updated_at = models.DateTimeField('Atualizado em', default = timezone.now)
     def  __str__(self):
         return self.name
 
@@ -44,20 +44,20 @@ class User(models.Model):
     email = models.CharField(max_length=100)
     phonenumber = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-    created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
-    updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
+    created_at = models.DateTimeField('Criado em', default = timezone.now)
+    updated_at = models.DateTimeField('Atualizado em', default = timezone.now)
 
 class GrowingStage(models.Model):
     description = models.CharField(max_length=100)
     days = models.IntegerField(default=0)
     step = models.IntegerField(default=0)
     plant = models.ForeignKey(Plant)
-    created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
-    updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
+    created_at = models.DateTimeField('Criado em', default = timezone.now)
+    updated_at = models.DateTimeField('Atualizado em', default = timezone.now)
 
 class Growing(models.Model):
     user = models.ForeignKey(User, default='')
     stage = models.ForeignKey(GrowingStage, default='')
-    created_at = models.DateTimeField('Criado em', default = datetime.datetime.now)
-    updated_at = models.DateTimeField('Atualizado em', default = datetime.datetime.now)
+    created_at = models.DateTimeField('Criado em', default = timezone.now)
+    updated_at = models.DateTimeField('Atualizado em', default = timezone.now)
 

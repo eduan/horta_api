@@ -53,6 +53,6 @@ class GrowingTestCase(TestCase):
         plant = Plant.objects.get(pk=1)
         user = User.objects.get(email='email@teste.com')
         startGrowing(user,plant)
-        g = Growing.objects.get(user_email='email@teste.com')
+        g = Growing.objects.get(user__email='email@teste.com')
         self.assertTrue(g.pk > 0)
 
