@@ -72,6 +72,9 @@ class Growing(models.Model):
     updated_at = models.DateTimeField('Atualizado em', default=timezone.now)
 
     def nextStep(self):
-        self.stage = GrowingStage.objects.get(plant=self.stage.plant, step=self.stage.step + 1)
-        self.save()
-        pass
+        try:
+            self.stage = GrowingStage.objects.get(plant=self.stage.plant, step=self.stage.step + 1)
+            self.save()
+            return True
+        except Exception as e:
+            return False
