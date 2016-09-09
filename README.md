@@ -14,6 +14,7 @@ sudo aptitude install libapache2-mod-wsgi python-dev libmysqlclient-dev apache2 
 sudo pip install djangorestframework
 sudo pip install markdown       # Markdown support for the browsable API.
 sudo pip install django-filter  # Filtering support
+sudo pip install djangorestframework
 ```
 
 ## Usage
