@@ -6,7 +6,7 @@ The main goal of the project is build an api to provide information and instruct
 
 ```
 wget https://bootstrap.pypa.io/get-pip.py
-pyhton get-pip.py
+python get-pip.py
 sudo pip install Django
 sudo pip install MySQL-python
 sudo pip install django-input-mask
